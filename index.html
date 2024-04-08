@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Features</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #7a5af5;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 10px;
+            margin: 2px;
+        }
+
+        .toggle-mode {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .increase-font {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .decrease-font {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .calculator {
+            margin-top: 30px;
+        }
+
+        .calc-display {
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 10px;  
+            font-size: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .calc-button {
+            width: calc(25% - 10px);
+            padding: 20px;
+            margin: 5px 0;
+            background-color: #ecf0f1;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .calc-button.operator {
+            background-color: #f1c40f;
+        }
+
+        .calc-button.zero {
+            background-color: #95a5a6;
+        }
+
+        .calc-button.clear {
+            background-color: #e74c3c;
+        }
+
+        .calc-button.equals {
+            background-color: #2ecc71;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .textt{
+            color: white;
+        }
+
+        .dark-mode {
+            background-color: #282828;
+            color: #ecf0f1;
+        }
+        .dark-textt{
+            color: #282828;
+        }
+        .dark-container{
+            background: url('https://i.ibb.co/txrMkwp/lebronsunshinecover.jpg');
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+    <script>
+        function toggleDarkLightMode() {
+            var body = document.body;
+            var container = document.getElementsByClassName('container')[0];
+            var textt = document.getElementsByClassName('textt');
+
+
+            body.classList.toggle('dark-mode');
+            container.classList.toggle('dark-container');
+
+
+            for (var i = 0; i < textt.length; i++) {
+                textt[i].classList.toggle('dark-textt');
+            }
+        }
+
+        function changeFontSize(increase) {
+            var htmlElement = document.documentElement;
+            var currentFontSize = parseInt(window.getComputedStyle(htmlElement).fontSize);
+            if (increase) {
+                htmlElement.style.fontSize = (currentFontSize + 1) + 'px';
+            } else {
+                htmlElement.style.fontSize = (currentFontSize - 1) + 'px';
+            }
+        }
+
+        // Calculator functionality
+        let calcOutput = '';
+
+        function inputCalc(value) {
+            calcOutput += value;
+            document.getElementById('calc-display').value = calcOutput;
+        }
+
+        function clearCalc() {
+            calcOutput = '';
+            document.getElementById('calc-display').value = calcOutput;
+        }
+
+        function calculate() {
+            try {
+                calcOutput = eval(calcOutput);
+                document.getElementById('calc-display').value = calcOutput;
+            } catch (e) {
+                document.getElementById('calc-display').value = 'Error';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title textt">Interactive Features</h1>
+        <button onclick="toggleDarkLightMode()" class="button toggle-mode">Toggle Light/Dark Mode</button>
+        <button onclick="changeFontSize(true)" class="button increase-font">Increase Font Size</button>
+        <button onclick="changeFontSize(false)" class="button decrease-font">Decrease Font Size</button>
+        <div class="calculator">
+            <h2 class="subtitle textt">Calculator</h2>
+            <input id="calc-display" type="text" class="calc-display" disabled>
+            <div class="calc-row">
+                <button onclick="inputCalc('1')" class="calc-button">1</button>
+                <button onclick="inputCalc('2')" class="calc-button">2</button>
+                <button onclick="inputCalc('3')" class="calc-button">3</button>
+                <button onclick="inputCalc('+')" class="calc-button operator">+</button>
+            </div>
+            <div class="calc-row">
+                <button onclick="inputCalc('4')" class="calc-button">4</button>
+                <button onclick="inputCalc('5')" class="calc-button">5</button>
+                <button onclick="inputCalc('6')" class="calc-button">6</button>
+                <button onclick="inputCalc('-')" class="calc-button operator">-</button>
+            </div>
+            <div class="calc-row">
+                <button onclick="inputCalc('7')" class="calc-button">7</button>
+                <button onclick="inputCalc('8')" class="calc-button">8</button>
+                <button onclick="inputCalc('9')" class="calc-button">9</button>
+                <button onclick="inputCalc('*')" class="calc-button operator">*</button>
+            </div>
+            <div class="calc-row">
+                <button onclick="inputCalc('0')" class="calc-button zero">0</button>
+                <button onclick="clearCalc()" class="calc-button clear">C</button>
+                <button onclick="calculate()" class="calc-button equals">=</button>
+                <button onclick="inputCalc('/')" class="calc-button operator">/</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
