@@ -10,6 +10,7 @@
             background-color: #f7f7f7;
             color: #333;
             padding: 20px;
+            display: flex;
         }
 
         .container {
@@ -108,11 +109,8 @@
             background-color: #282828;
             color: #ecf0f1;
         }
-        .dark-textt{
-            color: #282828;
-        }
         .dark-container{
-            background: url('https://i.ibb.co/txrMkwp/lebronsunshinecover.jpg');
+            background: url('https://i.ibb.co/grD8h20/u-r-myshunshinee.jpg');
             height: 100%;
             width: 100%;
             background-size: cover;
@@ -129,11 +127,6 @@
 
             body.classList.toggle('dark-mode');
             container.classList.toggle('dark-container');
-
-
-            for (var i = 0; i < textt.length; i++) {
-                textt[i].classList.toggle('dark-textt');
-            }
         }
 
         function changeFontSize(increase) {
@@ -170,7 +163,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title textt">Interactive Features</h1>
+        <h1 class="title textt">You Are My Sunshine</h1>
         <button onclick="toggleDarkLightMode()" class="button toggle-mode">Toggle Light/Dark Mode</button>
         <button onclick="changeFontSize(true)" class="button increase-font">Increase Font Size</button>
         <button onclick="changeFontSize(false)" class="button decrease-font">Decrease Font Size</button>
